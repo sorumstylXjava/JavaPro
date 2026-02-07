@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">JavaPro</string>
+    <string name="banner">Banner</string>
+    
+    <string name="checking_root">Checking root access…</string>
+    <string name="root_detected">✓ Root Access Detected</string>
+    <string name="root_not_detected">✗ Root Access Not Detected</string>
+    <string name="root_required">Root access required</string>
+    
+    <string name="select_mode">Select Performance Mode</string>
+    <string name="mode_performance">Performance</string>
+    <string name="mode_balance">Balance</string>
+    <string name="mode_powersave">Power Save</string>
+    
+    <string name="performance_desc">Maximum performance for gaming and heavy tasks. Higher battery consumption.</string>
+    <string name="balance_desc">Balanced performance and battery life. Recommended for daily use.</string>
+    <string name="powersave_desc">Extended battery life with reduced performance. Ideal for light usage.</string>
+    
+    <string name="apply">Apply</string>
+    <string name="mode_applied">Mode %s applied successfully</string>
+    
+    <string name="tweaks_title">Performance Tweaks</string>
+    <string name="tweak_applied">%s applied</string>
+    
+    <string name="tweak_gpu_boost">GPU Boost</string>
+    <string name="tweak_gpu_boost_desc">Maximize GPU performance for better graphics</string>
+    
+    <string name="tweak_cpu_boost">CPU Boost</string>
+    <string name="tweak_cpu_boost_desc">Enable CPU boost for faster processing</string>
+    
+    <string name="tweak_ram_optimizer">RAM Optimizer</string>
+    <string name="tweak_ram_optimizer_desc">Clear cache and optimize memory usage</string>
+    
+    <string name="tweak_thermal_control">Thermal Control</string>
+    <string name="tweak_thermal_control_desc">Disable thermal throttling for sustained performance</string>
+    
+    <string name="tweak_battery_saver">Battery Saver</string>
+    <string name="tweak_battery_saver_desc">Enable battery saving mode</string>
+    
+    <string name="tweak_network_boost">Network Boost</string>
+    <string name="tweak_network_boost_desc">Optimize network speed and latency</string>
+    
+    <string name="tweak_io_scheduler">I/O Scheduler</string>
+    <string name="tweak_io_scheduler_desc">Set optimized I/O scheduler for better storage performance</string>
+    
+    <string name="tweak_vm_optimizer">VM Optimizer</string>
+    <string name="tweak_vm_optimizer_desc">Optimize virtual memory settings</string>
+    
+    <string name="tweak_kernel_tweaks">Kernel Tweaks</string>
+    <string name="tweak_kernel_tweaks_desc">Apply kernel optimizations for better system performance</string>
+    
+    <string name="tweak_tcp_optimizer">TCP Optimizer</string>
+    <string name="tweak_tcp_optimizer_desc">Optimize TCP settings for faster internet</string>
+    
+    <string name="tweak_low_latency">Low Latency Mode</string>
+    <string name="tweak_low_latency_desc">Reduce input lag for gaming</string>
+    
+    <string name="tweak_audio_quality">Audio Quality</string>
+    <string name="tweak_audio_quality_desc">Enhance audio quality and bitrate</string>
+    
+    <string name="tweak_touch_response">Touch Response</string>
+    <string name="tweak_touch_response_desc">Improve touchscreen responsiveness</string>
+    
+    <string name="tweak_fps_unlock">FPS Unlock</string>
+    <string name="tweak_fps_unlock_desc">Unlock higher refresh rate for smoother display</string>
+    
+    <string name="tweak_adreno_boost">Adreno Boost</string>
+    <string name="tweak_adreno_boost_desc">Boost Adreno GPU performance</string>
+    
+    <string name="tweak_disable_throttle">Disable Throttling</string>
+    <string name="tweak_disable_throttle_desc">Disable CPU/GPU throttling</string>
+    
+    <string name="tweak_ram_cleaner">RAM Cleaner</string>
+    <string name="tweak_ram_cleaner_desc">Kill background apps to free memory</string>
+    
+    <string name="tweak_cache_optimizer">Cache Optimizer</string>
+    <string name="tweak_cache_optimizer_desc">Clear system cache for better performance</string>
+    
+    <string name="tweak_game_downscale">Game Downscale</string>
+    <string name="tweak_game_downscale_desc">Reduce game resolution for better performance</string>
+    
+    <string name="tweak_freeze_app">Freeze App</string>
+    <string name="tweak_freeze_app_desc">Disable apps to save resources</string>
+    
+    <string name="tweak_dns_changer">DNS Changer</string>
+    <string name="tweak_dns_changer_desc">Change DNS for faster internet</string>
+    
+    <string name="tweak_zram_optimizer">ZRAM Optimizer</string>
+    <string name="tweak_zram_optimizer_desc">Optimize ZRAM compression</string>
+    
+    <string name="game_downscale_title">Game Resolution Downscale</string>
+    <string name="enter_package_name">Enter package name</string>
+    <string name="downscale_applied">Downscale applied successfully</string>
+    
+    <string name="freeze_app_title">Freeze Application</string>
+    <string name="freeze">Freeze</string>
+    <string name="app_frozen">App frozen successfully</string>
+    
+    <string name="cancel">Cancel</string>
+    
+    <string name="settings">Settings</string>
+    <string name="dark_mode">Dark Mode</string>
+    <string name="dark_mode_desc">Enable dark theme</string>
+    
+    <string name="language">Language</string>
+    <string name="language_english">English</string>
+    <string name="language_indonesian">Indonesian</string>
+    <string name="select_language">Select Language</string>
+    
+    <string name="reset_all">Reset All Settings</string>
+    <string name="reset_settings">Reset Settings</string>
+    <string name="reset_confirm">Are you sure you want to reset all applied tweaks?</string>
+    <string name="reset">Reset</string>
+    <string name="reset_success">All settings reset successfully</string>
+    
+    <string name="community">Community</string>
+    <string name="join_telegram">Join Telegram Channel</string>
+    <string name="report_bug">Report Bug</string>
+    <string name="cannot_open_link">Cannot open link</string>
+    <string name="language_changed">Language changed. Restarting app…</string>
+    <string name="select_scale">Select scale resolution:</string>
+    
+    <string name="screen_modifier">Screen Modifier</string>
+    <string name="screen_modifier_desc">Adjust the screen color matrix and saturation.</string>
+    <string name="downscale_resolution">Downscale Resolution</string>
+    <string name="reset_original">Reset to Original</string>
+    <string name="reset_defaults">Reset to Defaults</string>
+    <string name="apply_on_boot">Apply on Boot</string>
+    <string name="red">Red</string>
+    <string name="green">Green</string>
+    <string name="blue">Blue</string>
+    <string name="saturation">Saturation</string>
+    
+    <string name="preview_title">Confirm Resolution</string>
+    <string name="preview_desc">Reverting in %d seconds. Keep these settings?</string>
+    <string name="confirm">Confirm</string>
+    <string name="revert">Revert</string>
+</resources>

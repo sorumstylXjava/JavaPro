@@ -1,0 +1,19 @@
+pluginManagement {
+    repositories {
+        google()
+        mavenCentral()
+        gradlePluginPortal()
+    }
+}
+dependencyResolutionManagement {
+    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+    repositories {
+        google()
+        mavenCentral()
+        // Ini adalah tambahan penting agar library libsu bisa didownload
+        maven { url 'https://jitpack.io' }
+    }
+}
+
+rootProject.name = "JavaPro"
+include ':app'

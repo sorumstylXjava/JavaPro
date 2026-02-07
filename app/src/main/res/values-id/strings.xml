@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">JavaPro</string>
+    <string name="banner">Banner</string>
+    
+    <string name="checking_root">Memeriksa akses root…</string>
+    <string name="root_detected">✓ Akses Root Terdeteksi</string>
+    <string name="root_not_detected">✗ Akses Root Tidak Terdeteksi</string>
+    <string name="root_required">Memerlukan akses root</string>
+    
+    <string name="select_mode">Pilih Mode Performa</string>
+    <string name="mode_performance">Performa</string>
+    <string name="mode_balance">Seimbang</string>
+    <string name="mode_powersave">Hemat Daya</string>
+    
+    <string name="performance_desc">Performa maksimal untuk gaming dan tugas berat. Konsumsi baterai lebih tinggi.</string>
+    <string name="balance_desc">Performa dan daya tahan baterai seimbang. Direkomendasikan untuk penggunaan harian.</string>
+    <string name="powersave_desc">Daya tahan baterai diperpanjang dengan performa dikurangi. Ideal untuk penggunaan ringan.</string>
+    
+    <string name="apply">Terapkan</string>
+    <string name="mode_applied">Mode %s berhasil diterapkan</string>
+    
+    <string name="tweaks_title">Tweak Performa</string>
+    <string name="tweak_applied">%s diterapkan</string>
+    
+    <string name="tweak_gpu_boost">Boost GPU</string>
+    <string name="tweak_gpu_boost_desc">Maksimalkan performa GPU untuk grafis lebih baik</string>
+    
+    <string name="tweak_cpu_boost">Boost CPU</string>
+    <string name="tweak_cpu_boost_desc">Aktifkan boost CPU untuk pemrosesan lebih cepat</string>
+    
+    <string name="tweak_ram_optimizer">Optimizer RAM</string>
+    <string name="tweak_ram_optimizer_desc">Bersihkan cache dan optimalkan penggunaan memori</string>
+    
+    <string name="tweak_thermal_control">Kontrol Thermal</string>
+    <string name="tweak_thermal_control_desc">Nonaktifkan throttling thermal untuk performa stabil</string>
+    
+    <string name="tweak_battery_saver">Hemat Baterai</string>
+    <string name="tweak_battery_saver_desc">Aktifkan mode hemat baterai</string>
+    
+    <string name="tweak_network_boost">Boost Jaringan</string>
+    <string name="tweak_network_boost_desc">Optimalkan kecepatan dan latensi jaringan</string>
+    
+    <string name="tweak_io_scheduler">Scheduler I/O</string>
+    <string name="tweak_io_scheduler_desc">Set scheduler I/O optimal untuk performa storage lebih baik</string>
+    
+    <string name="tweak_vm_optimizer">Optimizer VM</string>
+    <string name="tweak_vm_optimizer_desc">Optimalkan pengaturan virtual memory</string>
+    
+    <string name="tweak_kernel_tweaks">Tweak Kernel</string>
+    <string name="tweak_kernel_tweaks_desc">Terapkan optimasi kernel untuk performa sistem lebih baik</string>
+    
+    <string name="tweak_tcp_optimizer">Optimizer TCP</string>
+    <string name="tweak_tcp_optimizer_desc">Optimalkan pengaturan TCP untuk internet lebih cepat</string>
+    
+    <string name="tweak_low_latency">Mode Latensi Rendah</string>
+    <string name="tweak_low_latency_desc">Kurangi input lag untuk gaming</string>
+    
+    <string name="tweak_audio_quality">Kualitas Audio</string>
+    <string name="tweak_audio_quality_desc">Tingkatkan kualitas audio dan bitrate</string>
+    
+    <string name="tweak_touch_response">Respon Sentuh</string>
+    <string name="tweak_touch_response_desc">Tingkatkan responsivitas layar sentuh</string>
+    
+    <string name="tweak_fps_unlock">Buka FPS</string>
+    <string name="tweak_fps_unlock_desc">Buka refresh rate lebih tinggi untuk tampilan lebih smooth</string>
+    
+    <string name="tweak_adreno_boost">Boost Adreno</string>
+    <string name="tweak_adreno_boost_desc">Boost performa GPU Adreno</string>
+    
+    <string name="tweak_disable_throttle">Nonaktifkan Throttling</string>
+    <string name="tweak_disable_throttle_desc">Nonaktifkan throttling CPU/GPU</string>
+    
+    <string name="tweak_ram_cleaner">Pembersih RAM</string>
+    <string name="tweak_ram_cleaner_desc">Matikan aplikasi background untuk bebaskan memori</string>
+    
+    <string name="tweak_cache_optimizer">Optimizer Cache</string>
+    <string name="tweak_cache_optimizer_desc">Bersihkan cache sistem untuk performa lebih baik</string>
+    
+    <string name="tweak_game_downscale">Downscale Game</string>
+    <string name="tweak_game_downscale_desc">Kurangi resolusi game untuk performa lebih baik</string>
+    
+    <string name="tweak_freeze_app">Bekukan Aplikasi</string>
+    <string name="tweak_freeze_app_desc">Nonaktifkan aplikasi untuk hemat resource</string>
+    
+    <string name="tweak_dns_changer">Ubah DNS</string>
+    <string name="tweak_dns_changer_desc">Ubah DNS untuk internet lebih cepat</string>
+    
+    <string name="tweak_zram_optimizer">Optimizer ZRAM</string>
+    <string name="tweak_zram_optimizer_desc">Optimalkan kompresi ZRAM</string>
+    
+    <string name="game_downscale_title">Downscale Resolusi Game</string>
+    <string name="enter_package_name">Masukkan nama paket</string>
+    <string name="downscale_applied">Downscale berhasil diterapkan</string>
+    
+    <string name="freeze_app_title">Bekukan Aplikasi</string>
+    <string name="freeze">Bekukan</string>
+    <string name="app_frozen">Aplikasi berhasil dibekukan</string>
+    
+    <string name="cancel">Batal</string>
+    
+    <string name="settings">Pengaturan</string>
+    <string name="dark_mode">Mode Gelap</string>
+    <string name="dark_mode_desc">Aktifkan tema gelap</string>
+    
+    <string name="language">Bahasa</string>
+    <string name="language_english">Inggris</string>
+    <string name="language_indonesian">Indonesia</string>
+    <string name="select_language">Pilih Bahasa</string>
+    
+    <string name="reset_all">Reset Semua Pengaturan</string>
+    <string name="reset_settings">Reset Pengaturan</string>
+    <string name="reset_confirm">Apakah Anda yakin ingin mereset semua tweak yang diterapkan?</string>
+    <string name="reset">Reset</string>
+    <string name="reset_success">Semua pengaturan berhasil direset</string>
+    
+    <string name="community">Komunitas</string>
+    <string name="join_telegram">Gabung Channel Telegram</string>
+    <string name="report_bug">Laporkan Bug</string>
+    <string name="cannot_open_link">Tidak dapat membuka link</string>
+    <string name="language_changed">Bahasa diubah. Memulai ulang aplikasi…</string>
+    <string name="select_scale">Pilih skala resolusi:</string>
+</resources>
