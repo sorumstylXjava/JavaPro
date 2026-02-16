@@ -19,8 +19,9 @@ jobs:
           distribution: 'temurin'
           cache: gradle
 
-      - name: Create Temporary Directory
+      - name: Clean AndroidIDE Configurations
         run: |
+          sed -i '/android.aapt2FromMavenOverride/d' gradle.properties
           mkdir -p /home/runner/.gradle/tmp
           echo "org.gradle.jvmargs=-Djava.io.tmpdir=/home/runner/.gradle/tmp" >> gradle.properties
 
