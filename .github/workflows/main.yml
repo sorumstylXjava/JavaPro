@@ -11,6 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      
       - name: set up JDK 17
         uses: actions/setup-java@v4
         with:
@@ -21,12 +22,11 @@ jobs:
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
 
-      - name: Build with Gradle
+      - name: Build Debug APK
         run: ./gradlew assembleDebug
 
-      - name: Upload Build Artifact
+      - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
-          name: JavaPro-Debug-APK
+          name: JavaPro-Release
           path: app/build/outputs/apk/debug/*.apk
-          
