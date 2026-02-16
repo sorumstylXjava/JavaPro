@@ -38,7 +38,6 @@ fun AppProfileScreen(navController: NavController, lang: String) {
     val context = LocalContext.current
     val scope = rememberCoroutineScope()
     
-    // State
     var searchQuery by remember { mutableStateOf("") }
     var appList by remember { mutableStateOf<List<AppInfo>>(emptyList()) }
     var isLoading by remember { mutableStateOf(true) }
@@ -46,7 +45,6 @@ fun AppProfileScreen(navController: NavController, lang: String) {
     var selectedApp by remember { mutableStateOf<AppInfo?>(null) }
     var showDialog by remember { mutableStateOf(false) }
 
-    // Function untuk load/refresh aplikasi
     fun loadApps() {
         scope.launch {
             isLoading = true
@@ -63,12 +61,10 @@ fun AppProfileScreen(navController: NavController, lang: String) {
         }
     }
 
-    // Load Apps saat pertama kali
     LaunchedEffect(Unit) {
         loadApps()
     }
 
-    // Filter Logic
     val filteredList = remember(searchQuery, appList) {
         if (searchQuery.isEmpty()) {
             appList
@@ -90,7 +86,6 @@ fun AppProfileScreen(navController: NavController, lang: String) {
                     }
                 },
                 actions = {
-                    // TOMBOL REFRESH di pojok kanan atas
                     IconButton(
                         onClick = {
                             if (!isLoading) {
@@ -122,7 +117,6 @@ fun AppProfileScreen(navController: NavController, lang: String) {
                 .padding(padding)
                 .fillMaxSize()
         ) {
-            // --- SEARCH BAR ---
             OutlinedTextField(
                 value = searchQuery,
                 onValueChange = { searchQuery = it },
@@ -135,7 +129,6 @@ fun AppProfileScreen(navController: NavController, lang: String) {
                 singleLine = true
             )
 
-            // --- CONTENT ---
             if (isLoading) {
                 Box(Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
                     Column(horizontalAlignment = Alignment.CenterHorizontally) {
@@ -156,7 +149,6 @@ fun AppProfileScreen(navController: NavController, lang: String) {
                     )
                 }
             } else {
-                // Tampilkan jumlah aplikasi
                 Text(
                     text = if (lang == "id") {
                         "${filteredList.size} aplikasi"
@@ -190,7 +182,6 @@ fun AppProfileScreen(navController: NavController, lang: String) {
         }
     }
 
-    // --- DIALOG PILIH PROFILE ---
     if (showDialog && selectedApp != null) {
         val app = selectedApp!!
         AlertDialog(
@@ -222,10 +213,7 @@ fun AppProfileScreen(navController: NavController, lang: String) {
                                 .fillMaxWidth()
                                 .clickable {
                                     try {
-                                        // Set Profile
                                         AppProfileManager.setAppProfile(context, app.packageName, mode)
-                                        
-                                        // Update List Lokal
                                         appList = appList.map { 
                                             if (it.packageName == app.packageName) {
                                                 it.copy(profile = mode)
@@ -287,7 +275,6 @@ fun AppItemCard(
             Modifier.padding(16.dp), 
             verticalAlignment = Alignment.CenterVertically
         ) {
-            // Icon dengan error handling yang lebih baik
             val iconBitmap = remember(app.packageName) {
                 try {
                     app.icon.toBitmap(64, 64).asImageBitmap()
@@ -305,7 +292,6 @@ fun AppItemCard(
                         .clip(RoundedCornerShape(12.dp))
                 )
             } else {
-                // Fallback icon
                 Box(
                     Modifier
                         .size(48.dp)
@@ -342,7 +328,6 @@ fun AppItemCard(
                 
                 Spacer(Modifier.height(8.dp))
                 
-                // Badge Profile
                 val (label, color) = when(app.profile) {
                     "performance" -> {
                         val text = if (lang == "id") "PERFORMA" else "PERFORMANCE"
