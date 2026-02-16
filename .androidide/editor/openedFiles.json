@@ -1,20 +1,20 @@
 {
   "allFiles": [
     {
-      "file": "/storage/emulated/0/AndroidIDEProjects/JavaPro/app/build.gradle",
+      "file": "/storage/emulated/0/AndroidIDEProjects/JavaPro/gradle.properties",
       "selection": {
         "end": {
-          "column": 0,
-          "index": 2283,
-          "line": 78
+          "column": 31,
+          "index": 1592,
+          "line": 28
         },
         "start": {
-          "column": 0,
-          "index": 2283,
-          "line": 78
+          "column": 31,
+          "index": 1592,
+          "line": 28
         }
       }
     }
   ],
-  "selectedFile": "/storage/emulated/0/AndroidIDEProjects/JavaPro/app/build.gradle"
+  "selectedFile": "/storage/emulated/0/AndroidIDEProjects/JavaPro/gradle.properties"
 }
