@@ -28,6 +28,8 @@ import com.javapro.utils.AppProfileManager
 import com.javapro.utils.PreferenceManager
 import com.javapro.utils.TweakExecutor
 import com.javapro.utils.TweakManager
+import com.javapro.utils.GpuMonitor
+import kotlinx.coroutines.delay
 
 @Composable
 fun HomeScreen(prefManager: PreferenceManager, lang: String, navController: NavController) {
@@ -40,6 +42,12 @@ fun HomeScreen(prefManager: PreferenceManager, lang: String, navController: NavC
     val isPerfModeActive by TweakManager.isPerformanceActive.collectAsState()
     val fpsEnabled by prefManager.fpsEnabledFlow.collectAsState(initial = false)
     val realFps by GameBoosterService.fpsFlow.collectAsState()
+
+    LaunchedEffect(fpsEnabled) {
+        if (fpsEnabled) {
+            GpuMonitor.findValidFpsNode()
+        }
+    }
 
     Column(
         Modifier
@@ -163,8 +171,8 @@ fun HomeScreen(prefManager: PreferenceManager, lang: String, navController: NavC
                     checked = fpsEnabled,
                     onCheckedChange = { isChecked ->
                         prefManager.setFpsEnabled(isChecked)
+                        val intent = Intent(context, GameBoosterService::class.java)
                         if (isChecked) {
-                            val intent = Intent(context, GameBoosterService::class.java)
                             if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
                                 context.startForegroundService(intent)
                             } else {
@@ -172,7 +180,6 @@ fun HomeScreen(prefManager: PreferenceManager, lang: String, navController: NavC
                             }
                             Toast.makeText(context, "FPS On", Toast.LENGTH_SHORT).show()
                         } else {
-                            val intent = Intent(context, GameBoosterService::class.java)
                             context.stopService(intent)
                             Toast.makeText(context, "FPS Off", Toast.LENGTH_SHORT).show()
                         }
