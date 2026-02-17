@@ -1,50 +1,20 @@
 {
   "allFiles": [
     {
-      "file": "/storage/emulated/0/AndroidIDEProjects/JavaPro/app/src/main/java/com/javapro/utils/GpuMonitor.kt",
+      "file": "/storage/emulated/0/AndroidIDEProjects/JavaPro/app/src/main/java/com/javapro/MainActivity.kt",
       "selection": {
         "end": {
           "column": 0,
-          "index": 231,
-          "line": 10
+          "index": 4958,
+          "line": 126
         },
         "start": {
           "column": 0,
-          "index": 231,
-          "line": 10
-        }
-      }
-    },
-    {
-      "file": "/storage/emulated/0/AndroidIDEProjects/JavaPro/app/src/main/java/com/javapro/services/GameBoosterService.kt",
-      "selection": {
-        "end": {
-          "column": 0,
-          "index": 4218,
-          "line": 122
-        },
-        "start": {
-          "column": 0,
-          "index": 4218,
-          "line": 122
-        }
-      }
-    },
-    {
-      "file": "/storage/emulated/0/AndroidIDEProjects/JavaPro/app/src/main/java/com/javapro/ui/screens/HomeScreen.kt",
-      "selection": {
-        "end": {
-          "column": 0,
-          "index": 12258,
-          "line": 289
-        },
-        "start": {
-          "column": 0,
-          "index": 12258,
-          "line": 289
+          "index": 4958,
+          "line": 126
         }
       }
     }
   ],
-  "selectedFile": "/storage/emulated/0/AndroidIDEProjects/JavaPro/app/src/main/java/com/javapro/ui/screens/HomeScreen.kt"
+  "selectedFile": "/storage/emulated/0/AndroidIDEProjects/JavaPro/app/src/main/java/com/javapro/MainActivity.kt"
 }

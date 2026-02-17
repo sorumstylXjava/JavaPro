@@ -12,7 +12,7 @@ import android.provider.Settings
 import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.activity.enableEdgeToEdge // TAMBAHKAN INI
+import androidx.activity.enableEdgeToEdge
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.*
@@ -25,6 +25,7 @@ import com.javapro.ui.screens.SplashScreen
 import com.javapro.ui.theme.JavaProTheme
 import com.javapro.utils.PreferenceManager
 import com.javapro.utils.TweakManager
+import com.javapro.services.GameBoosterService
 
 class MainActivity : ComponentActivity() {
 
@@ -37,28 +38,23 @@ class MainActivity : ComponentActivity() {
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        // AKTIFKAN MODE FULL SCREEN (EDGE-TO-EDGE)
         enableEdgeToEdge()
         
         super.onCreate(savedInstanceState)
         
-        // PENGATURAN AGAR KONTEN MASUK KE AREA NOTCH (PONI)
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
             window.attributes.layoutInDisplayCutoutMode = 
                 android.view.WindowManager.LayoutParams.LAYOUT_IN_DISPLAY_CUTOUT_MODE_SHORT_EDGES
         }
 
-        // Inisialisasi TweakManager
         TweakManager.init(this)
 
-        // Cek Izin Notifikasi & Usage Stats
         checkNotificationPermission()
 
         if (!hasUsageStatsPermission()) {
             startActivity(Intent(Settings.ACTION_USAGE_ACCESS_SETTINGS))
         }
 
-        // Cek Mode Performa Terakhir
         val isPerfModeActive = TweakManager.getPrefs(this).getBoolean(TweakManager.KEY_PERFORMANCE_MODE, false)
         if (isPerfModeActive) {
             TweakManager.setPerformanceMode(this, true)
@@ -71,7 +67,7 @@ class MainActivity : ComponentActivity() {
             LaunchedEffect(fpsEnabled) {
                 if (fpsEnabled) {
                     if (Settings.canDrawOverlays(this@MainActivity)) {
-                        startService(Intent(this@MainActivity, FpsService::class.java))
+                        startService(Intent(this@MainActivity, GameBoosterService::class.java))
                     } else {
                         val intent = Intent(
                             Settings.ACTION_MANAGE_OVERLAY_PERMISSION,
@@ -82,7 +78,7 @@ class MainActivity : ComponentActivity() {
                         Toast.makeText(this@MainActivity, "Izinkan Overlay untuk menampilkan FPS", Toast.LENGTH_SHORT).show()
                     }
                 } else {
-                    stopService(Intent(this@MainActivity, FpsService::class.java))
+                    stopService(Intent(this@MainActivity, GameBoosterService::class.java))
                 }
             }
 
