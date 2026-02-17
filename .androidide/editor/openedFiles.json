@@ -14,6 +14,21 @@
           "line": 126
         }
       }
+    },
+    {
+      "file": "/storage/emulated/0/AndroidIDEProjects/JavaPro/app/src/main/java/com/javapro/utils/GpuMonitor.kt",
+      "selection": {
+        "end": {
+          "column": 0,
+          "index": 1903,
+          "line": 63
+        },
+        "start": {
+          "column": 0,
+          "index": 1903,
+          "line": 63
+        }
+      }
     }
   ],
   "selectedFile": "/storage/emulated/0/AndroidIDEProjects/JavaPro/app/src/main/java/com/javapro/MainActivity.kt"
