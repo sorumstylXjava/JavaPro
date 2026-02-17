@@ -28,8 +28,6 @@ import com.javapro.utils.AppProfileManager
 import com.javapro.utils.PreferenceManager
 import com.javapro.utils.TweakExecutor
 import com.javapro.utils.TweakManager
-import com.javapro.utils.GpuMonitor
-import kotlinx.coroutines.delay
 
 @Composable
 fun HomeScreen(prefManager: PreferenceManager, lang: String, navController: NavController) {
@@ -42,12 +40,6 @@ fun HomeScreen(prefManager: PreferenceManager, lang: String, navController: NavC
     val isPerfModeActive by TweakManager.isPerformanceActive.collectAsState()
     val fpsEnabled by prefManager.fpsEnabledFlow.collectAsState(initial = false)
     val realFps by GameBoosterService.fpsFlow.collectAsState()
-
-    LaunchedEffect(fpsEnabled) {
-        if (fpsEnabled) {
-            GpuMonitor.findValidFpsNode()
-        }
-    }
 
     Column(
         Modifier
@@ -161,7 +153,7 @@ fun HomeScreen(prefManager: PreferenceManager, lang: String, navController: NavC
                     Column {
                         Text("FPS Monitor (Real)", fontWeight = FontWeight.Bold)
                         Text(
-                            if (realFps > 0) "$realFps FPS" else if (fpsEnabled) "Scanning..." else "Disabled",
+                            text = if (!fpsEnabled) "Disabled" else if (realFps > 0) "$realFps FPS" else "Scanning...",
                             fontSize = 14.sp,
                             color = if (realFps >= 50) Color.Green else MaterialTheme.colorScheme.onSurfaceVariant
                         )
@@ -171,17 +163,18 @@ fun HomeScreen(prefManager: PreferenceManager, lang: String, navController: NavC
                     checked = fpsEnabled,
                     onCheckedChange = { isChecked ->
                         prefManager.setFpsEnabled(isChecked)
-                        val intent = Intent(context, GameBoosterService::class.java)
+                        val intent = Intent(context, GameBoosterService::class.java).apply {
+                            putExtra("ACTION_TYPE", if (isChecked) "START_FPS" else "STOP_FPS")
+                        }
                         if (isChecked) {
                             if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
                                 context.startForegroundService(intent)
                             } else {
                                 context.startService(intent)
                             }
-                            Toast.makeText(context, "FPS On", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(context, "FPS Monitor On", Toast.LENGTH_SHORT).show()
                         } else {
-                            context.stopService(intent)
-                            Toast.makeText(context, "FPS Off", Toast.LENGTH_SHORT).show()
+                            context.startService(intent)
                         }
                     }
                 )

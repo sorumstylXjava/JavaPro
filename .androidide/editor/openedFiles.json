@@ -1,17 +1,32 @@
 {
   "allFiles": [
     {
+      "file": "/storage/emulated/0/AndroidIDEProjects/JavaPro/app/src/main/java/com/javapro/MainActivity.kt",
+      "selection": {
+        "end": {
+          "column": 42,
+          "index": 2861,
+          "line": 76
+        },
+        "start": {
+          "column": 39,
+          "index": 2858,
+          "line": 76
+        }
+      }
+    },
+    {
       "file": "/storage/emulated/0/AndroidIDEProjects/JavaPro/app/src/main/java/com/javapro/ui/screens/HomeScreen.kt",
       "selection": {
         "end": {
           "column": 0,
-          "index": 12351,
-          "line": 296
+          "index": 12222,
+          "line": 289
         },
         "start": {
           "column": 0,
-          "index": 12351,
-          "line": 296
+          "index": 12222,
+          "line": 289
         }
       }
     }
