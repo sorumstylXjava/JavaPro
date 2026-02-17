@@ -1,5 +1,6 @@
 package com.javapro.ui.screens
 
+import android.content.Intent
 import android.widget.Toast
 import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
@@ -22,24 +23,23 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.javapro.R
+import com.javapro.services.GameBoosterService
 import com.javapro.utils.AppProfileManager
 import com.javapro.utils.PreferenceManager
 import com.javapro.utils.TweakExecutor
 import com.javapro.utils.TweakManager
-import kotlinx.coroutines.launch
 
 @Composable
 fun HomeScreen(prefManager: PreferenceManager, lang: String, navController: NavController) {
     val context = LocalContext.current
     val scope = rememberCoroutineScope()
     
-    // State Data
     val isRooted = remember { TweakExecutor.checkRoot() }
     val info = remember { TweakExecutor.getDeviceInfo(context) }
     
-    // State UI
     val isPerfModeActive by TweakManager.isPerformanceActive.collectAsState()
     val fpsEnabled by prefManager.fpsEnabledFlow.collectAsState(initial = false)
+    val realFps by GameBoosterService.fpsFlow.collectAsState()
 
     Column(
         Modifier
@@ -47,7 +47,6 @@ fun HomeScreen(prefManager: PreferenceManager, lang: String, navController: NavC
             .padding(16.dp)
             .verticalScroll(rememberScrollState())
     ) {
-        // --- BANNER ---
         Card(
             shape = RoundedCornerShape(16.dp),
             modifier = Modifier.fillMaxWidth().height(180.dp)
@@ -62,7 +61,6 @@ fun HomeScreen(prefManager: PreferenceManager, lang: String, navController: NavC
 
         Spacer(Modifier.height(20.dp))
 
-        // --- TOMBOL NAVIGASI: APP PROFILES ---
         Card(
             onClick = { navController.navigate("app_profiles") },
             modifier = Modifier.fillMaxWidth(),
@@ -93,7 +91,6 @@ fun HomeScreen(prefManager: PreferenceManager, lang: String, navController: NavC
 
         Spacer(Modifier.height(16.dp))
 
-        // --- DEVICE INFO ---
         Text(
             if (lang == "id") "Informasi Perangkat" else "Device Info",
             fontWeight = FontWeight.Bold,
@@ -141,7 +138,6 @@ fun HomeScreen(prefManager: PreferenceManager, lang: String, navController: NavC
 
         Spacer(Modifier.height(20.dp))
 
-        // --- FPS MONITOR ---
         Card(
             modifier = Modifier.fillMaxWidth(),
             colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface)
@@ -155,11 +151,11 @@ fun HomeScreen(prefManager: PreferenceManager, lang: String, navController: NavC
                     Icon(Icons.Default.Speed, null, tint = MaterialTheme.colorScheme.primary)
                     Spacer(Modifier.width(16.dp))
                     Column {
-                        Text("FPS Monitor", fontWeight = FontWeight.Bold)
+                        Text("FPS Monitor (Real)", fontWeight = FontWeight.Bold)
                         Text(
-                            if (lang == "id") "Tampilkan FPS Real-time" else "Show Real-time FPS",
-                            fontSize = 12.sp,
-                            color = MaterialTheme.colorScheme.onSurfaceVariant
+                            if (realFps > 0) "$realFps FPS" else if (fpsEnabled) "Scanning..." else "Disabled",
+                            fontSize = 14.sp,
+                            color = if (realFps >= 50) Color.Green else MaterialTheme.colorScheme.onSurfaceVariant
                         )
                     }
                 }
@@ -168,8 +164,16 @@ fun HomeScreen(prefManager: PreferenceManager, lang: String, navController: NavC
                     onCheckedChange = { isChecked ->
                         prefManager.setFpsEnabled(isChecked)
                         if (isChecked) {
+                            val intent = Intent(context, GameBoosterService::class.java)
+                            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+                                context.startForegroundService(intent)
+                            } else {
+                                context.startService(intent)
+                            }
                             Toast.makeText(context, "FPS On", Toast.LENGTH_SHORT).show()
                         } else {
+                            val intent = Intent(context, GameBoosterService::class.java)
+                            context.stopService(intent)
                             Toast.makeText(context, "FPS Off", Toast.LENGTH_SHORT).show()
                         }
                     }
@@ -179,7 +183,6 @@ fun HomeScreen(prefManager: PreferenceManager, lang: String, navController: NavC
 
         Spacer(Modifier.height(20.dp))
 
-        // --- QUICK MODES ---
         Text(
             if (lang == "id") "Mode Cepat" else "Quick Modes",
             fontWeight = FontWeight.Bold,
@@ -196,7 +199,6 @@ fun HomeScreen(prefManager: PreferenceManager, lang: String, navController: NavC
                 contentColor = MaterialTheme.colorScheme.onPrimaryContainer
             )
 
-            // 1. PERFORMANCE
             Button(
                 onClick = {
                     TweakManager.setPerformanceMode(context, true)
@@ -212,7 +214,6 @@ fun HomeScreen(prefManager: PreferenceManager, lang: String, navController: NavC
                 Text("Performance", fontSize = 12.sp, maxLines = 1, overflow = TextOverflow.Ellipsis)
             }
 
-            // 2. BALANCE
             Button(
                 onClick = {
                     TweakManager.setPerformanceMode(context, false)
@@ -228,7 +229,6 @@ fun HomeScreen(prefManager: PreferenceManager, lang: String, navController: NavC
                 Text("Balance", fontSize = 12.sp, maxLines = 1, overflow = TextOverflow.Ellipsis)
             }
 
-            // 3. SAVE BATTERY
             Button(
                 onClick = {
                     TweakManager.setPerformanceMode(context, false)

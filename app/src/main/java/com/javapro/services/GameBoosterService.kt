@@ -10,12 +10,20 @@ import android.os.IBinder
 import androidx.core.app.NotificationCompat
 import com.javapro.R
 import com.javapro.utils.GameListManager
+import com.javapro.utils.GpuMonitor
 import kotlinx.coroutines.*
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.asStateFlow
 
 class GameBoosterService : Service() {
 
     private val serviceScope = CoroutineScope(Dispatchers.IO + Job())
     private val NOTIF_ID = 1
+
+    companion object {
+        private val _fpsFlow = MutableStateFlow(0)
+        val fpsFlow = _fpsFlow.asStateFlow()
+    }
 
     override fun onBind(intent: Intent?): IBinder? = null
 
@@ -24,6 +32,20 @@ class GameBoosterService : Service() {
         createNotificationChannel()
         startForeground(NOTIF_ID, createNotification("Mode Performance on", "Waiting for game..."))
         startGameMonitoring()
+        startFpsMonitoring()
+    }
+
+    private fun startFpsMonitoring() {
+        serviceScope.launch {
+            val found = GpuMonitor.findValidFpsNode()
+            if (found) {
+                while (isActive) {
+                    val fps = GpuMonitor.getRealFps()
+                    _fpsFlow.emit(fps)
+                    delay(1000)
+                }
+            }
+        }
     }
 
     private fun startGameMonitoring() {
@@ -34,16 +56,14 @@ class GameBoosterService : Service() {
                 val topApp = getTopAppName()
                 
                 if (topApp != lastApp) {
-                    // Cek jika package yang terdeteksi ada di daftar game
                     if (topApp.isNotEmpty() && games.contains(topApp)) {
                         updateNotification("Mode Performance on", "Active: $topApp")
                     } else {
-                        // Jika ingin debug, ganti teks di bawah jadi: "Waiting (Detected: $topApp)"
                         updateNotification("Mode Performance on", "Waiting for game...")
                     }
                     lastApp = topApp
                 }
-                delay(3000) // Cek setiap 3 detik agar lebih responsif
+                delay(3000)
             }
         }
     }
@@ -76,20 +96,16 @@ class GameBoosterService : Service() {
         }
     }
 
-    // LOGIKA DETEKSI YANG DIPERKUAT
     private fun getTopAppName(): String {
         return try {
-            // Gunakan dumpsys window yang biasanya lebih konsisten di banyak versi Android
             val process = Runtime.getRuntime().exec(arrayOf("su", "-c", "dumpsys window | grep mCurrentFocus"))
             val reader = process.inputStream.bufferedReader()
             val line = reader.readLine() ?: ""
             
-            // Format biasanya: mCurrentFocus=Window{... u0 com.package.name/com.package.name.MainActivity}
             if (line.contains("/")) {
                 val valPart = line.split(" ").lastOrNull() ?: ""
                 if (valPart.contains("/")) {
                     val pkg = valPart.split("/")[0]
-                    // Bersihkan jika ada karakter sisa seperti {
                     return pkg.substringAfterLast("{").trim()
                 }
             }
